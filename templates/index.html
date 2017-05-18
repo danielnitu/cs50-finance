@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        {% if not stocks %}
+            <h4>You have no shares. Go <a href="{{ url_for('buy') }}">buy</a> some!</h4>
+        {% endif %}
+        {% if stocks %}
+        <table class="table table-hover">
+            <tr>
+                <th>Company</th>
+                <th>Symbol</th>
+                <th>Quantity</th>
+                <th>PPS</th>
+                <th>CPPS</th>
+                <th>TSV</th>
+                <th>CSV</th>
+                <th>Profit</th>
+            </tr>
+            
+            {% for stock in stocks %}
+            <tr>
+                <td>{{ stock.company }}</td>
+                <td>{{ stock.symbol }}</td>
+                <td>{{ stock.quantity }}</td>
+                <td>{{ stock.pps }}</td>
+                <td>{{ stock.cur_price }}</td>
+                <td>{{ stock.total }}</td>
+                <td>{{ stock.cur_total }}</td>
+                <td>{{ stock.profit }}</td>
+            </tr>    
+            {% endfor %}
+        </table>
+        {% endif %}
+        <blockquote class="text-left">
+            <h5>Available cash: <mark>{{ cash }}</mark></h4>
+            <h5>Portfolio value: <mark>{{ grand_total }}</mark></h4>
+        </blockquote>
+        {% if stocks %}
+        <h5 class="text-left">
+                <small>
+                <mark>PPS</mark> - price per share (initial) 
+                <mark>CPPS</mark> - current price per share 
+                <mark>TSV</mark> - total shares value 
+                <mark>CSV</mark> - current shares value
+                </small>
+        </h5>
+        {% endif %}
+    </div>
+    <div class="col-md-2"></div>
+{% endblock %}

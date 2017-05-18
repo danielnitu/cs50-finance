@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Account
+{% endblock %}
+
+{% block main %}
+    <p>
+    {% if success %}
+        Password changed successfully!
+    {% endif %}
+    </p>
+    <form action="{{ url_for('account') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <input class="form-control" name="old_password" placeholder="Password" type="password"/>
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="password" placeholder="New Password" type="password"/>
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="confirm_password" placeholder="Retype Password" type="password"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Change Password</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

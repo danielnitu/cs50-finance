@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Success
+{% endblock %}
+
+{% block main %}
+    <h3 class="text-center">
+        You successfully {{ action }}
+        <mark>{{ quantity }} {{ name }}</mark> 
+        {% if quantity == "1" %} share 
+        {% else %} shares
+        {% endif %} for 
+        <mark>{{ total }}</mark>
+    </h3>
+    <h3 class="text-center small">
+        Funds available: <mark>{{ funds }}</mark>
+    </h3>
+{% endblock %}
